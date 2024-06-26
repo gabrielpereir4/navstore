@@ -21,7 +21,7 @@ abstract class GenericProvider {
     }
   }
 
-  Future<Mappable> get(int id, Object object) async {
+  Future<Mappable> get(int id) async {
     Response response = await _dio.get('$url/$suffix/$id');
     return Mappable.fromMap(response.data);
   }
@@ -49,7 +49,7 @@ abstract class GenericProvider {
     }
   }
 
-  Future<List<Object>> getList() async {
+  Future<List<Mappable>> getList() async {
     Response response = await _dio.get('$url/$suffix');
 
     List<Mappable> collection = [];

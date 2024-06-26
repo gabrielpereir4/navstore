@@ -15,7 +15,7 @@ class User implements Mappable {
 
   factory User.fromMap(Map<String, dynamic> map) {
     return User(map['id'], map['name'], map['email'], map['password'],
-        map['address'], map['postalcode'], map['admin']);
+        map['address'], map['postalCode'], map['admin']);
   }
 
   @override
@@ -25,7 +25,7 @@ class User implements Mappable {
       'email': email,
       'password': password,
       'address': address,
-      'postalcode': postalcode,
+      'postalCode': postalcode,
       'admin': admin
     };
   }
