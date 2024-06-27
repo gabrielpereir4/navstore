@@ -2,7 +2,7 @@ import 'package:navstore/model/mappable.dart';
 
 class User implements Mappable {
   @override
-  int id;
+  int? id;
   String name;
   String email;
   String password;

@@ -46,6 +46,7 @@ class AuthError extends AuthState {
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(Unauthenticated()) {
     on<RegisterEvent>((event, emit) async {
+      print("REGISTRANDO!");
       try {
         User newuser = await AuthProvider.helper.registerUser(event.user);
         emit(Authenticated(user: newuser));
@@ -58,7 +59,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       try {
         User? newuser =
             await AuthProvider.helper.loginUser(event.username, event.password);
+        print('logado');
         emit(Authenticated(user: newuser!));
+        print("emitido");
       } catch (e) {
         emit(AuthError(errormessage: e.toString()));
       }

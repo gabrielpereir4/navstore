@@ -28,6 +28,7 @@ class UserProvider {
   }
 
   Future<User> get(int id) async {
+    print("Getting USER!");
     Response response = await _dio.get('$url/$suffix/$id');
     return User.fromMap(response.data);
   }
@@ -50,6 +51,7 @@ class UserProvider {
     try {
       print("Deleting ID $id in $url/$suffix");
       await _dio.delete('$url/$suffix/$id');
+      print("Sucess deleting user");
       return true;
     } catch (error) {
       print("Error deleting ID $id in $url/$suffix ($error)");

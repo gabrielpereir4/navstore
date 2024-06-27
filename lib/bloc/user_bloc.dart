@@ -89,8 +89,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       }
     });
     on<UserLoad>((event, emit) async {
+      print("CARREGANDO USER");
       try {
-        User user = await UserProvider.helper.get(event.id) as User;
+        User user = await UserProvider.helper.get(event.id);
         emit(UserLoaded(user));
       } catch (e) {
         emit(UserLoadError(e.toString()));
@@ -98,7 +99,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     });
     on<UserLoadList>((event, emit) async {
       try {
-        List<User> list = await UserProvider.helper.getList() as List<User>;
+        List<User> list = await UserProvider.helper.getList();
         emit(UserListLoaded(list));
       } catch (e) {
         emit(UserLoadError(e.toString()));

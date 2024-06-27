@@ -58,16 +58,17 @@ class ProductProvider {
   Future<List<Product>> getList() async {
     try {
       print("Fetching PRODUCT list");
-      Response response = await _dio.get('$url$suffix');
+      Response response = await _dio.get('$url/$suffix');
       List<Product> collection = [];
-      response.data.forEach((key, value) {
-        Product item = Product.fromMap(value);
+      print(response.data);
+      response.data.forEach((j) {
+        Product item = Product.fromMap(j);
         collection.add(item);
       });
       print('Fetched ${collection.length} objects ($suffix)');
       return collection;
     } catch (e) {
-      print(e.toString());
+      print('Product ERROR: ${e.toString()}');
       throw e;
     }
   }

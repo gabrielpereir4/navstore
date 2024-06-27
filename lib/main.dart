@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navstore/bloc/auth_bloc.dart';
 import 'package:navstore/view/wrapper.dart';
+import 'package:navstore/view/nav_login.dart';
+import 'package:navstore/view/nav_register.dart';
 
 void main() async {
   runApp(const MainApp());
@@ -23,10 +25,20 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MultiBlocProvider(providers: [
+    return MultiBlocProvider(
+      providers: [
         BlocProvider(create: (context) => AuthBloc()),
-      ], child: const Wrapper()),
+      ],
+      child: MaterialApp(
+        title: 'NavStore',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        initialRoute: '/', // Define a rota inicial
+        routes: {
+          '/': (context) => const Wrapper(), // Wrapper como a tela inicial
+        },
+      ),
     );
   }
 }

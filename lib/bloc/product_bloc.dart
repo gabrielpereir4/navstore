@@ -96,8 +96,9 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
     });
     on<ProductListLoad>((event, emit) async {
       try {
-        List<Product> list =
-            await ProductProvider.helper.getList() as List<Product>;
+        print('FETCH PRODUCT LIST');
+        List<Product> list = await ProductProvider.helper.getList();
+        print(list);
         emit(ProductListLoaded(list));
       } catch (e) {
         emit(ProductLoadError(e.toString()));

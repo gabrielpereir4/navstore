@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:navstore/bloc/auth_bloc.dart';
+import 'package:navstore/view/drawer_layout.dart';
+import 'package:navstore/view/nav_initial.dart';
 
 class Wrapper extends StatefulWidget {
   const Wrapper({Key? key}) : super(key: key);
@@ -18,30 +20,23 @@ class WrapperState extends State<Wrapper> {
       listener: (context, state) {
         if (state is AuthError) {
           showDialog(
-              context: context,
-              builder: (context) {
-                return AlertDialog(
-                  title: const Text("Erro de Autenticação"),
-                  content: Text(state.errormessage),
-                );
-              });
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                title: const Text("Erro de Autenticação"),
+                content: Text(state.errormessage),
+              );
+            },
+          );
         }
       },
       builder: (context, state) {
         if (state is Authenticated) {
-          return authenticatedWidget(context);
+          return DrawerLayout(); // Tela autenticada
         } else {
-          return unauthenticatedWidget(context);
+          return UnauthenticatedScreen(); // Tela não autenticada
         }
       },
     );
   }
-}
-
-Widget authenticatedWidget(BuildContext context) {
-  return Text('Hello');
-}
-
-Widget unauthenticatedWidget(BuildContext context) {
-  return Text('Hello. You are logged out.');
 }

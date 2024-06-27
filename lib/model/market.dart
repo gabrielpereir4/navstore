@@ -3,7 +3,7 @@ import 'package:navstore/model/product.dart';
 
 class Market implements Mappable {
   @override
-  int id;
+  int? id;
   String name;
   String address;
   String postalcode;
